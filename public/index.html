@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>tg-crush · Jev 实时判断</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="dot" id="live-dot"></span>
+        <span class="brand-name">tg-crush</span>
+        <span class="brand-self" id="self-name"></span>
+      </div>
+      <ul id="chat-list" class="chat-list"></ul>
+      <div class="sidebar-foot">
+        <label class="field">
+          <span>关系</span>
+          <select id="relation">
+            <option value="crush">Crush / 暧昧中</option>
+            <option value="new">刚认识</option>
+            <option value="couple">恋爱中</option>
+          </select>
+        </label>
+        <button id="refresh" class="ghost">重算好感</button>
+      </div>
+    </aside>
+
+    <main class="thread">
+      <header class="thread-head">
+        <h1 id="title">选择一个对话</h1>
+        <div id="counters" class="counters"></div>
+      </header>
+      <div id="messages" class="messages"></div>
+      <div id="typing" class="typing" hidden>
+        <span class="wave"><i></i><i></i><i></i></span>
+        <span id="typing-text">对方正在输入…</span>
+      </div>
+    </main>
+
+    <aside class="rail">
+      <section class="card hero">
+        <h2>好感信号</h2>
+        <div class="hero-body">
+          <div class="ring-wrap">
+            <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="ring-track" cx="60" cy="60" r="50" />
+              <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="50" />
+            </svg>
+            <div class="ring-label">
+              <b id="affinity-number">—</b>
+              <span id="affinity-stage">等待分析</span>
+            </div>
+          </div>
+          <div id="dimensions" class="dims"></div>
+        </div>
+        <p id="affinity-note" class="note" hidden></p>
+      </section>
+
+      <section class="card action">
+        <h2>此刻该做什么</h2>
+        <div class="action-label" id="action-label">—</div>
+        <p class="dim" id="action-detail">等对方说话</p>
+        <p class="note" id="action-alt" hidden></p>
+      </section>
+
+      <section class="card judge">
+        <h2>发送前体检 <span class="hint">你写，Jev 判</span></h2>
+        <textarea id="draft" rows="3" placeholder="把你想发的话打在这里，别真发出去。"></textarea>
+        <div class="judge-hint" id="judge-hint">输入后自动判断</div>
+
+        <div id="judge-result" class="judge-result" hidden>
+          <div class="verdict">
+            <div class="verdict-score" id="judge-score">—</div>
+            <div class="verdict-text">
+              <b id="judge-verdict"></b>
+              <span class="dim" id="judge-fit"></span>
+            </div>
+            <div class="timing" id="judge-timing"></div>
+          </div>
+          <ul class="hits" id="judge-hits"></ul>
+          <div class="direction">
+            <span class="note">更好的方向</span>
+            <b id="judge-direction"></b>
+            <p class="dim" id="judge-direction-detail"></p>
+          </div>
+        </div>
+      </section>
+
+      <div class="telemetry" id="telemetry">—</div>
+    </aside>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
